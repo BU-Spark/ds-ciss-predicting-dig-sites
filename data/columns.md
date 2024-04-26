@@ -13,7 +13,7 @@
   * C - špilja, pećina/cave
   * RS - pripećak, abri/rock shelter
 * NADMORSKA VISINA / ELEVATION
-* RAZDOBLJE / PERIOD 
+* RAZDOBLJE / PERIOD
   * LP-donji paleolitik/lower paleolithic
   * MP-srednji paelolitik/middle paleolithic
   * UP-gornji paelolitik/upper paleolithic

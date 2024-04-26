@@ -10,14 +10,14 @@
 1. Downloading and understanding the data
     * The environmental data we recieved needs to be unzipped and organized in a way that is easy to access.
     * The data about the currently known sites needed to be "normalized" as the coordinates where in different formats (decimal vs dmh).
-        * I (Ethan) used Python to do the normalization but due to an issue w/ my computer, I was unable to backup the code. However I did luckily send the data on Slack so I did not need to reproduce everything. If the original code is needed, I can rewrite it.
+        * we used Python to do the normalization but due to an issue w/ my computer, I was unable to backup the code. However I did luckily send the data on Slack so I did not need to reproduce everything. If the original code is needed, I can rewrite it.
 
 2. Preparing the data
     * This step was simply to import all of the data into ArcGIS Pro and make sure that everything worked.
 
 3. Analyzing the data
     * This step was to run the LCP analysis on the data and see if we could find any patterns.
-        * Currently, I (Ethan) have been able to create a distance path raster, but have been unsuccessful in my attempts to use the raster to find optimal paths.
+        * Currently, we have been able to create a distance path raster, but have been unsuccessful in my attempts to use the raster to find optimal paths.
     * Using these Tool References from ArcGIS
         * [Path Distance (Spatial Analyst)](https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/path-distance.htm)
             * This tool is deprecated, but the replacement for it performs differently and I have not been able to get it to work.
