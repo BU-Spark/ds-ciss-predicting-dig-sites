@@ -9,6 +9,7 @@
   * kanal/channel
 * K.Č./cadastral particle/coordinates
 * TIP LOKALITETA / TYPE OF SITE
+  * U - underwater
   * O- lokalitet na otvorenom/open air
   * C - špilja, pećina/cave
   * RS - pripećak, abri/rock shelter
