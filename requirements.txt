@@ -6,3 +6,8 @@ openpyxl
 matplotlib
 ipykernel
 scikit-learn
+geopy
+tqdm
+ipywidgets
+jupyter 
+IProgress
