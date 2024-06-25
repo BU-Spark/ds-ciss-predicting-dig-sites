@@ -1,4 +1,4 @@
-numpy
+numpy >= 2.0.0
 pandas
 xgboost
 python-calamine 
@@ -11,3 +11,4 @@ tqdm
 ipywidgets
 jupyter 
 IProgress
+pyarrow
