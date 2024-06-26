@@ -4,6 +4,7 @@ from pathlib import Path
 from multiprocessing import Pool, cpu_count
 
 import numpy as np
+from numpy.random._generator import Generator
 import pandas as pd
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
@@ -48,11 +49,11 @@ def not_site_criteria(df: pd.DataFrame):
 
 def generate_random_mix(known_df, test_df, rng_mix=0.01, rng_seed=None):
     """ Generates a mix of random sites and actual sites """
-    rng = np.random.default_rng(rng_seed)
+    rng: Generator = np.random.default_rng(rng_seed)
 
     rng_selection = test_df[test_df['Is_Site'] == 0]
     rng_nums = rng.choice(
-        a=rng_selection.index, 
+        a=rng_selection.index,
         size=int(np.ceil(test_df['Is_Site'].value_counts()[0]*rng_mix)), # round up
         replace=False
     )
