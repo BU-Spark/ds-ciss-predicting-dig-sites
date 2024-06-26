@@ -1,40 +1,61 @@
-# Explanation of Test Site Modeling Script
+# Test Site Modeling Script Explanation
 
-1. **Data preparation**:
-    * The script reads in two datasets:
-        * `test_sites`: This dataset contains evenly spread out dummy sites and their characteristics (e.g., elevation, slope, wetness).
-        * `known_sites`: This dataset contains known dig sites with the same characteristics.
-2. **Cleaning the data**:
-    * The script cleans and preprocesses the data by:
-        * Merging several columns together
-            * The WAW (or Water and Wetness) columns are coalesced into a single column
-            * The elevation column in the known_sites dataset is also coalesced together, but if the site had an elevation noted in literature, that value is used
-        * Converting data types to match the expected formats
-3. **Labeling the data**: 
-    * The script applies a set of rules to label each row in the `test_sites` dataset as either "dig site" or not (i.e., not a dig site). This is done using the `not_site_criteria` function.
-        * The current criteria for a site to be labeled as not a possible dig site are as follows:
-            * Elevation > 400m
-            * Distance to chert > 20km
-            * Distance to the coast > 6km
-4. **Mixing the data**
-    * The script selects 1% of the test sites that were labeled as not a possible dig site and adds them to the list of known dig sites.
-    * This is done because the model needs to be able to identify the traits of locations that are not dig sites as well as those that are.
-5. **Running simulations**: The script runs multiple simulations using the XGBoost Python package.
-    * Using the following columns, the script trains the model to predict whether a site is a dig site or not:
-        * Elevation
-        * Wetness
-        * Temp
-        * Slope
-        * NEAR_DIST_Chert
-        * NEAR_DIST_Canals
-        * NEAR_DIST_River_Net
-        * NEAR_DIST_Coastal
-    * The simulations are run a total of 5000 times and the number of times that each site is picked is noted.
-        * It was decided to run the model and data mixing many times in order to account for the randomness of the model and the data.
-        * 5000 was picked arbitrarily, but it was decided that this number was large enough to get a good idea of the distribution of the data. Additionally, any more rounds and the script would take too long to run (i.e. >1hr).
-6. **Combining results**: The script combines the results from all simulations into a single dataset, `collection_df`.
-7. **Grouping and counting**: The script groups the data by "OBJECTID" (a unique identifier for each dig site) and counts the number of predictions for each site.
-8. **Saving the results**: The script saves the final dataset to two files:
-    * `mass_test.parquet`: This file contains all the individual simulations.
-    * `mass_test_grouped.parquet`: This file contains the grouped data with count information.
-        * The grouped data is also stored in a CSV format for easier viewing.
+---
+
+## Data Preparation
+
+The script reads in two datasets:
+
+* `test_sites`: dummy sites with characteristics (elevation, slope, wetness)
+* `known_sites`: known dig sites  with same characteristics
+
+## Cleaning the Data
+
+The script cleans and preprocesses the data by:
+
+* Merging columns together
+  * Coalescing WAW (Water and Wetness) columns into a single column
+  * Merging elevation column in known_sites dataset (using literature values if available)
+* Converting data types to match expected formats
+
+## Labeling the Data
+
+The script applies rules to label each row in `test_sites` as "dig site" or not using the `not_site_criteria` function. The criteria for a site to be labeled as not a possible dig site are:
+
+* Elevation > 400m
+* Distance to chert > 20km
+* Distance to coast > 6km
+
+## Mixing the Data
+
+The script adds 1% of non-dig sites to known dig sites, as the model needs to identify traits of both types of locations.
+
+## Running Simulations
+
+The script runs multiple simulations using XGBoost Python package. The model trains on columns:
+
+* Elevation
+* Wetness
+* Temp
+* Slope
+* NEAR_DIST_Chert
+* NEAR_DIST_Canals
+* NEAR_DIST_River_Net
+* NEAR_DIST_Coastal
+
+The script runs 5000 simulations, noting the number of times each site is picked. This was chosen to account for model randomness and data variance. The linear classifier from XGBoost was chosen over something like a Neural Network due the tendancy for NNs to overfit the data. The XGBoost model is a good balance between accuracy and generalization. We wanted to avoid overfitting the data as much as possible and also some variance in the results as the input data isn't perfect.
+
+## Combining Results
+
+The script combines simulation results into a single dataset, `collection_df`.
+
+## Grouping and Counting
+
+The script groups data by "OBJECTID" (unique identifier) and counts predictions for each site.
+
+## Saving the Results
+
+The script saves the final dataset to two files:
+
+* `mass_test.parquet`: individual simulations
+* `mass_test_grouped.parquet`: grouped data with count information (also saved in CSV format)
