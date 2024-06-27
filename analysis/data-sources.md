@@ -12,4 +12,11 @@
 
 ## EU DEM Files
 
-- [Slope](https://ec.europa.eu/eurostat/web/gisco/geodata/digital-elevation-model/eu-dem#Slope)
+- Elevation
+  - Originally from the [EU DEM Website](https://land.copernicus.eu/imagery-in-situ/eu-dem/eu-dem-v1.1), but it is now archived
+  - Current map pulled from [an elevation API](https://www.gpxz.io/blog/eudem)
+- [Slope](https://ec.europa.eu/eurostat/web/gisco/geodata/digital-elevation-model/eu-dem#Slope): Derived from the EU DEM measurments
+
+## Croatia Solar Resource Maps
+
+- [Temperatures](https://solargis.com/maps-and-gis-data/download/croatia): Based off of solar radiation and other measurements
