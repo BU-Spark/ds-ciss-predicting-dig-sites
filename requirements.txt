@@ -1,0 +1,14 @@
+numpy >= 2.0.0
+pandas
+xgboost
+python-calamine 
+openpyxl
+matplotlib
+ipykernel
+scikit-learn
+geopy
+tqdm
+ipywidgets
+jupyter 
+IProgress
+pyarrow
